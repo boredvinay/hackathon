@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SpaRoot>..\mark.client</SpaRoot>
+    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <SpaProxyServerUrl>https://localhost:58450</SpaProxyServerUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
+      <Version>9.*-*</Version>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\mark.client\mark.client.esproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Shared\SharedModule.csproj" />
+    <ProjectReference Include="..\Modules\Templates\TemplatesModule.csproj" />
+    <ProjectReference Include="..\Modules\Validation\ValidationModule.csproj" />
+    <ProjectReference Include="..\Modules\Render\RenderModule.csproj" />
+    <ProjectReference Include="..\Modules\Jobs\JobsModule.csproj" />
+    <ProjectReference Include="..\Modules\Printing\PrintingModule.csproj" />
+    <ProjectReference Include="..\Modules\Assets\AssetsModule.csproj" />
+    <ProjectReference Include="..\Modules\Security\SecurityModule.csproj" />
+    <ProjectReference Include="..\Modules\Audit\AuditModule.csproj" />
+    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+</Project>
