@@ -1,4 +1,6 @@
-using Persistence;
+﻿using System.Reflection;
+using SharedModule;
+using JobsModule;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,30 +11,30 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Mark API", Version = "v1" });
-    var xml = Path.Combine(AppContext.BaseDirectory, "Mark.Server.xml");
-    if (File.Exists(xml)) c.IncludeXmlComments(xml, includeControllerXmlComments: true);
+    var xml = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xml);
+    if (File.Exists(xmlPath)) c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
 });
 
-// Modules required right now
-builder.Services.AddPersistence(builder.Configuration);
-// (we�ll add Jobs module immediately after Persistence is up)
-//builder.Services.AddJobsModule();
+// 🔹 Register shared infra FIRST
+builder.Services.AddSharedModule();
+
+// 🔹 Then Jobs (which depends on shared)
+builder.Services.AddJobsModule();
 
 var app = builder.Build();
 
-// Apply EF migrations automatically (dev only)
 if (app.Environment.IsDevelopment())
 {
-    app.Services.MigrateDb();
     app.UseSwagger();
-    app.UseSwaggerUI(s => s.SwaggerEndpoint("/swagger/v1/swagger.json", "Mark API v1"));
+    app.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v1/swagger.json", "Mark API v1"));
 }
 
 app.UseRouting();
 
+// MVC controllers
 app.MapControllers();
-app.MapJobsEndpoints();
+
 
 app.MapGet("/", () => Results.Redirect("/swagger"));
-
 app.Run();
