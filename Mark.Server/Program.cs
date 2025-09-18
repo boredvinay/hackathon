@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using SharedModule;
 using JobsModule;
+using DesignModule;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +17,11 @@ builder.Services.AddSwaggerGen(c =>
     if (File.Exists(xmlPath)) c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
 });
 
-// 🔹 Register shared infra FIRST
+// Register shared infra FIRST
 builder.Services.AddSharedModule();
 
-// 🔹 Then Jobs (which depends on shared)
 builder.Services.AddJobsModule();
+builder.Services.AddDesignModule();
 
 var app = builder.Build();
 
