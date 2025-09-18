@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityModule", "Modules\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedModule", "Modules\Shared\SharedModule.csproj", "{86E15F7E-AD93-7F9A-5FB1-BAAC7BC06D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplatesModule", "Modules\Templates\TemplatesModule.csproj", "{D9709D23-B5CE-A06D-208A-B58C005E8226}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignModule", "Modules\Templates\DesignModule.csproj", "{D9709D23-B5CE-A06D-208A-B58C005E8226}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationModule", "Modules\Validation\ValidationModule.csproj", "{2263E2AC-CC8A-5715-043B-FC64542C2600}"
 EndProject

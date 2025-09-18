@@ -15,7 +15,10 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>9.*-*</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +26,7 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Shared\SharedModule.csproj" />
-    <ProjectReference Include="..\Modules\Templates\TemplatesModule.csproj" />
+    <ProjectReference Include="..\Modules\Templates\DesignModule.csproj" />
     <ProjectReference Include="..\Modules\Validation\ValidationModule.csproj" />
     <ProjectReference Include="..\Modules\Render\RenderModule.csproj" />
     <ProjectReference Include="..\Modules\Jobs\JobsModule.csproj" />
@@ -32,10 +35,6 @@
     <ProjectReference Include="..\Modules\Security\SecurityModule.csproj" />
     <ProjectReference Include="..\Modules\Audit\AuditModule.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
