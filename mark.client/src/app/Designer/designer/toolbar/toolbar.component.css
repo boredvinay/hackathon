@@ -1,0 +1,133 @@
+/* --- Global Styles & Color Palette --- */
+:root {
+  --primary-color: #5d5dff; /* A vibrant blue for accents and hover states */
+  --secondary-color: #f1f5f9; /* A light grey for backgrounds */
+  --tertiary-color: #ffffff; /* White for cards and panels */
+  --background-dark: #2c3e50; /* A deep blue-gray for the left panel */
+  --text-dark: #334155; /* Dark, readable text */
+  --text-light: #e2e8f0; /* Light text for dark backgrounds */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  --hover-shadow-color: rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+}
+
+/* --- Main Layout Container --- */
+.app-designer {
+  display: flex;
+  height: 100vh;
+  background-color: var(--secondary-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Left Navigation Panel --- */
+.left-panel {
+  width: 60px;
+  background-color: var(--background-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.menu-item {
+  width: 100%;
+  cursor: pointer;
+  padding: 12px 0;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.menu-item:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--primary-color);
+}
+
+.icon-label {
+  font-size: 11px;
+  margin-top: 5px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.material-symbols-outlined {
+  font-size: 28px;
+  color: var(--text-light);
+}
+
+/* --- Right Panel --- */
+.right-panel {
+  width: 300px;
+  background-color: var(--tertiary-color);
+  border-left: 1px solid #e0e0e0;
+  padding: 25px;
+  overflow-y: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+h4 {
+  font-size: 1.4em;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  border: 1px solid #d1d5db;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.left-panel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+ 
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.icon-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-color);
+}
+
+.icon-wrapper:hover .material-symbols-outlined {
+  color: var(--tertiary-color);
+}
+
+.icon-wrapper:hover .icon-label {
+  color: var(--tertiary-color);
+}

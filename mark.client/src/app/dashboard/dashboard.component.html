@@ -1,0 +1,60 @@
+<div class="app-container">
+  <!-- Left Navigation Panel -->
+  <nav class="left-panel">
+    <ul>
+      <li><button class="nav-btn" (click)="goTo('/dashboard')">Dashboard</button></li>
+      <li><button class="nav-btn" (click)="goTo('/designer')">Designer</button></li>
+      <li><button class="nav-btn" (click)="goTo('/templates')">Templates</button></li>
+      <li><button class="nav-btn" (click)="goTo('/jobs')">Jobs & Printing</button></li>
+      <li><button class="nav-btn" (click)="goTo('/admin')">Admin Console</button></li>
+      <li><button class="nav-btn" (click)="goTo('/assets')">Assets</button></li>
+    </ul>
+  </nav>
+
+  <!-- Right Content Panel -->
+  <div class="right-panel">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+      <h2>📊 Dashboard</h2>
+    </div>
+
+    <!-- Job Statistics -->
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3>Jobs Processed Today</h3>
+        <p class="count">128</p>
+        <small>Quick reference</small>
+      </div>
+      <div class="summary-card">
+        <h3>Labels Printed Today</h3>
+        <p class="count">352</p>
+        <small>Important metric</small>
+      </div>
+      <div class="summary-card">
+        <h3>Average Job Time</h3>
+        <p class="count">15 min</p>
+        <small>Monitor performance</small>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card chart-card">
+        <highcharts-chart [Highcharts]="Highcharts" [options]="jobChartOptions"
+          style="width: 100%; height: 300px; display: block;">
+        </highcharts-chart>
+      </div>
+
+      <div class="card chart-card">
+        <highcharts-chart [Highcharts]="Highcharts" [options]="systemHealthOptions"
+          style="width: 100%; height: 300px; display: block;">
+        </highcharts-chart>
+      </div>
+
+      <div class="card chart-card">
+        <highcharts-chart [Highcharts]="Highcharts" [options]="templateChartOptions"
+          style="width: 100%; height: 300px; display: block;">
+        </highcharts-chart>
+      </div>
+    </div>
+  </div>
+</div>

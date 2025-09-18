@@ -1,0 +1,72 @@
+<div *ngIf="selectedElement; else noSelection" class="property-panel">
+  <h3 class="panel-title">Properties</h3>
+
+  <!-- Fill for shapes -->
+  <div *ngIf="isShapeElement">
+    <label>Fill</label>
+    <input type="color" [value]="fillValue" (input)="update('color', $any($event.target).value)">
+  </div>
+
+  <!-- Width / Height for shapes, lines, and barcodes -->
+  <div *ngIf="!isTextElement && !isLineElement">
+    <label>Width</label>
+    <input type="number" [value]="selectedElement.width()" (input)="update('width', $any($event.target).value)">
+    <label>Height</label>
+    <input type="number" [value]="selectedElement.height()" (input)="update('height', $any($event.target).value)">
+  </div>
+
+  <!-- Text controls -->
+  <div *ngIf="isTextElement">
+    <label>Text</label>
+    <input type="text" [value]="textValue" (input)="textValue = $any($event.target).value">
+    <label>Font Size</label>
+    <input type="number" [value]="fontSizeValue" (input)="fontSizeValue = $any($event.target).value">
+    <label>Font Family</label>
+    <select [value]="fontFamilyValue" (change)="fontFamilyValue = $any($event.target).value">
+      <option value="Arial">Arial</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Verdana">Verdana</option>
+    </select>
+    <label>Bold <input type="checkbox" [checked]="isBold" (change)="toggleBold($any($event.target).checked)"></label>
+    <label>Italic <input type="checkbox" [checked]="isItalic"
+        (change)="toggleItalic($any($event.target).checked)"></label>
+    <label>Underline <input type="checkbox" [checked]="isUnderline"
+        (change)="toggleUnderline($any($event.target).checked)"></label>
+  </div>
+
+  <!-- Line controls -->
+  <div *ngIf="isLineElement">
+    <label>Stroke</label>
+    <input type="color" [value]="strokeColor" (input)="update('stroke', $any($event.target).value)">
+
+    <label>Width</label>
+    <input type="number" [value]="strokeWidth" (input)="update('strokeWidth', $any($event.target).value)">
+
+    <label>Style</label>
+    <select (change)="update('lineStyle', $any($event.target).value)">
+      <option value="solid">Solid</option>
+      <option value="dashed">Dashed</option>
+      <option value="dotted">Dotted</option>
+    </select>
+  </div>
+
+  <!-- Barcode controls -->
+  <div *ngIf="isCodeElement">
+    <label>Symbology</label>
+    <select [value]="barcodeType" (change)="barcodeType = $any($event.target).value">
+      <option value="Code128">Code128</option>
+      <option value="EAN13">EAN13</option>
+      <option value="QRCode">QR Code</option>
+      <option value="DataMatrix">Data Matrix</option>
+      <option value="Aztec">Aztec</option>
+      <option value="MaxiCode">MaxiCode</option>
+    </select>
+    <label>Value</label>
+    <input type="text" [value]="barcodeValue" (input)="barcodeValue = $any($event.target).value">
+  </div>
+</div>
+
+<ng-template #noSelection>
+  <p class="no-selection">No element selected</p>
+</ng-template>

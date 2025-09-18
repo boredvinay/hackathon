@@ -1,0 +1,46 @@
+.workspace {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+
+.canvas-container {
+  border: 1px solid #ccc;
+  width: 800px;
+  height: 600px;
+  position: relative;
+}
+
+.property-panel {
+  width: 250px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+
+.canvas {
+  border: 1px solid #ccc;
+  background: #eee;
+  display: inline-block;
+}
+
+.canvas-toolbar {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+
+.canvas-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: auto;       /* 👈 this gives scrollbars */
+  border: 1px solid #ccc;
+}
+
+.canvas {
+  display: inline-block; /* keeps stage size inside wrapper */
+}
+

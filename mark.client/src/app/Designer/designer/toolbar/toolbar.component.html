@@ -1,0 +1,95 @@
+<div class="app-designer">
+  <div class="left-panel">
+    <div class="menu-item" (click)="toggleRightPanel('elements')">
+      <div class="left-panel-wrapper">
+        <span class="material-symbols-outlined">category</span>
+        <span class="icon-label">Elements</span>
+      </div>
+    </div>
+
+    <div class="menu-item" (click)="toggleRightPanel('widgets')">
+      <div class="left-panel-wrapper">
+        <span class="material-symbols-outlined">widgets</span>
+        <span class="icon-label">Widgets</span>
+      </div>
+    </div>
+
+    <div class="menu-item" (click)="toggleRightPanel('assets')">
+      <div class="left-panel-wrapper">
+        <span class="material-symbols-outlined">gallery_thumbnail</span>
+        <span class="icon-label">Assets</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel" *ngIf="activeSection">
+    <ng-container [ngSwitch]="activeSection">
+      <div *ngSwitchCase="'elements'">
+        <h4>Shapes</h4>
+        <div class="icon-grid elements-grid">
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'shape', 'rect')"
+            (dblclick)="addDirectly('shape', 'rect')">
+            <span class="material-symbols-outlined">crop_square</span>
+            <span class="icon-label">Rectangle</span>
+          </div>
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'shape', 'circle')"
+            (dblclick)="addDirectly('shape', 'circle')">
+            <span class="material-symbols-outlined">circle</span>
+            <span class="icon-label">Circle</span>
+          </div>
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'shape', 'line')"
+            (dblclick)="addDirectly('shape', 'line')">
+            <span class="material-symbols-outlined">line_axis</span>
+            <span class="icon-label">Line</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'widgets'">
+        <h4>Widgets</h4>
+        <div class="icon-grid">
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'widget', 'text')"
+            (dblclick)="addDirectly('widget', 'text')">
+            <span class="material-symbols-outlined">text_fields</span>
+            <span class="icon-label">Text Box</span>
+          </div>
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'widget', 'barcode')"
+            (dblclick)="addDirectly('widget', 'barcode')">
+            <span class="material-symbols-outlined">barcode</span>
+            <span class="icon-label">Barcode</span>
+          </div>
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'widget', 'qrcode')"
+            (dblclick)="addDirectly('widget', 'qrcode')">
+            <span class="material-symbols-outlined">qr_code</span>
+            <span class="icon-label">QR Code</span>
+          </div>
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'widget', 'datamatrix')"
+            (dblclick)="addDirectly('widget', 'datamatrix')">
+            <span class="material-symbols-outlined">grid_on</span>
+            <span class="icon-label">DataMatrix</span>
+          </div>
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'widget', 'aztec')"
+            (dblclick)="addDirectly('widget', 'aztec')">
+            <span class="material-symbols-outlined">apps</span>
+            <span class="icon-label">Aztec</span>
+          </div>
+          <div class="icon-wrapper" draggable="true" (dragstart)="onDragStart($event, 'widget', 'maxicode')"
+            (dblclick)="addDirectly('widget', 'maxicode')">
+            <span class="material-symbols-outlined">blur_circular</span>
+            <span class="icon-label">MaxiCode</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'assets'">
+        <h4>Asset Gallery</h4>
+        <div class="icon-grid assets-grid">
+          <div class="icon-wrapper" (click)="addWidget('image')">
+            <span class="material-symbols-outlined">image</span>
+            <span class="icon-label">Upload Image</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

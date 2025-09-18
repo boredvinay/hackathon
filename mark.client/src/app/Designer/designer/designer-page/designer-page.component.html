@@ -1,0 +1,54 @@
+<div class="designer-layout">
+  <!-- Left Toolbar (always open) -->
+  <app-toolbar class="left-toolbar"></app-toolbar>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Top Toolbar (centered above canvas) -->
+    <div class="top-toolbar">
+     <div class="toolbar-center">
+    <button (click)="canvasComp.undo()"><span class="material-symbols-outlined">undo</span></button>
+    <button (click)="canvasComp.redo()"><span class="material-symbols-outlined">redo</span></button>
+    <button (click)="canvasComp.delete()"><span class="material-symbols-outlined">delete</span></button>
+    <button (click)="canvasComp.copy()"><span class="material-symbols-outlined">content_copy</span></button>
+    <button (click)="canvasComp.download()"><span class="material-symbols-outlined">download</span></button>
+    <button (click)="canvasComp.resetCanvas()">Reset Canvas</button>
+</div>
+
+      <div class="canvas-toolbar">
+       <label>Paper Size: </label>
+        <select (change)="canvasComp.setPaperSize($event)">
+          <option value="a4">A4</option>
+          <option value="a3">A3</option>
+          <option value="4:3">4:3</option>
+          <option value="16:9">16:9</option>
+          <option value="custom">Custom</option>
+        </select>
+
+        <div *ngIf="canvasComp.customSizeSelected" class="custom-size">
+          <input type="number" [(ngModel)]="canvasComp.customWidth" placeholder="Width" /> x
+          <input type="number" [(ngModel)]="canvasComp.customHeight" placeholder="Height" />
+          <button (click)="canvasComp.applyCustomSize()">Apply</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Canvas -->
+    <div class="canvas-wrapper">
+      <app-canvas #canvasComp
+        [droppedElement]="droppedElement"
+        (elementSelected)="selectedElementHandler($event)">
+      </app-canvas>
+    </div>
+  </div>
+
+  <!-- Right-side Property Panel -->
+  <app-property-panel
+    class="right-panel"
+    [selectedElement]="selectedElement"
+    (updateProps)="canvasComp.updateSelectedProps($event)">
+  </app-property-panel>
+
+
+</div>
