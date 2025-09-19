@@ -6,6 +6,16 @@ using RenderModule;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevCors", p =>
+        p.WithOrigins("http://localhost:5009", "http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithExposedHeaders("ETag")
+            .AllowCredentials());
+});
+
 // Controllers + Swagger
 builder.Services.AddControllers()
     .AddJsonOptions(o => o.JsonSerializerOptions.PropertyNamingPolicy = null);
@@ -16,15 +26,6 @@ builder.Services.AddSwaggerGen(c =>
     var xml = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xml);
     if (File.Exists(xmlPath)) c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
-});
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("DevCors", p =>
-        p.WithOrigins("http://localhost:5009", "https://localhost:58450")
-            .AllowAnyMethod()                  // GET/POST/PUT/DELETE/OPTIONS
-            .AllowAnyHeader()                  // Content-Type, If-Match, etc.
-            .WithExposedHeaders("ETag")        // if you return ETag
-            .AllowCredentials());              // only if you use cookies (optional)
 });
 
 // Register shared infra FIRST
@@ -48,7 +49,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // MVC controllers
-app.MapControllers();
+app.MapControllers().RequireCors("DevCors");
 
 
 app.MapGet("/", () => Results.Redirect("/swagger"));

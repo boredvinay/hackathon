@@ -35,7 +35,9 @@ public sealed class DesignsController(IDesignService svc) : ControllerBase
 
     // --------------- Designs ----------------
 
-    /// <summary>Create a new design (header row) with a unique key.</summary>
+    /// <summary>
+    /// Create a new design (header row) with a unique key.
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<CreateDesignResponse>> CreateDesign([FromBody] CreateDesignRequest req, CancellationToken ct)
     {
@@ -43,7 +45,9 @@ public sealed class DesignsController(IDesignService svc) : ControllerBase
         return CreatedAtAction(nameof(GetDesign), new { id }, new CreateDesignResponse { Id = id });
     }
 
-    /// <summary>Get a design header and optional latest version id.</summary>
+    /// <summary>
+    /// Get a design header and optional latest version id.
+    /// </summary>
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<DesignDto>> GetDesign(Guid id, CancellationToken ct)
         => Ok(await svc.GetDesignAsync(id, ct));
@@ -77,7 +81,7 @@ public sealed class DesignsController(IDesignService svc) : ControllerBase
     [HttpPut("versions/{versionId:guid}/dsl")]
     public async Task<IActionResult> SaveDsl(Guid versionId, [FromBody] SaveDslRequest req, CancellationToken ct)
     {
-        await svc.SaveDslAsync(versionId, req, ct);
+        await svc.SaveDslAsync(versionId, req, ct); 
         return NoContent();
     }
 

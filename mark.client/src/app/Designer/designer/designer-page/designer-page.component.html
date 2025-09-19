@@ -6,17 +6,27 @@
   <div class="main-content">
     <!-- Top Toolbar (centered above canvas) -->
     <div class="top-toolbar">
-     <div class="toolbar-center">
-    <button (click)="canvasComp.undo()"><span class="material-symbols-outlined">undo</span></button>
-    <button (click)="canvasComp.redo()"><span class="material-symbols-outlined">redo</span></button>
-    <button (click)="canvasComp.delete()"><span class="material-symbols-outlined">delete</span></button>
-    <button (click)="canvasComp.copy()"><span class="material-symbols-outlined">content_copy</span></button>
-    <button (click)="canvasComp.download()"><span class="material-symbols-outlined">download</span></button>
-    <button (click)="canvasComp.resetCanvas()">Reset Canvas</button>
-</div>
+      <div class="toolbar-center">
+        <button (click)="canvasComp.undo()">
+          <span class="material-symbols-outlined">undo</span>
+        </button>
+        <button (click)="canvasComp.redo()">
+          <span class="material-symbols-outlined">redo</span>
+        </button>
+        <button (click)="canvasComp.delete()">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+        <button (click)="canvasComp.copy()">
+          <span class="material-symbols-outlined">content_copy</span>
+        </button>
+        <button (click)="canvasComp.download()">
+          <span class="material-symbols-outlined">download</span>
+        </button>
+        <button (click)="canvasComp.resetCanvas()">Reset Canvas</button>
+      </div>
 
       <div class="canvas-toolbar">
-       <label>Paper Size: </label>
+        <label>Paper Size: </label>
         <select (change)="canvasComp.setPaperSize($event)">
           <option value="a4">A4</option>
           <option value="a3">A3</option>
@@ -31,12 +41,19 @@
           <button (click)="canvasComp.applyCustomSize()">Apply</button>
         </div>
 
+        <!-- 👉 Optional: direct API actions -->
+        <div class="api-actions" style="margin-left:12px; display:flex; gap:8px;">
+          <button type="button" (click)="onSave()">Save</button>
+          <button type="button" (click)="onPreview()">Preview</button>
+          <button type="button" (click)="onPrint()">Print</button>
+        </div>
       </div>
     </div>
 
     <!-- Canvas -->
     <div class="canvas-wrapper">
-      <app-canvas #canvasComp
+      <app-canvas
+        #canvasComp
         [droppedElement]="droppedElement"
         (elementSelected)="selectedElementHandler($event)">
       </app-canvas>
@@ -49,6 +66,4 @@
     [selectedElement]="selectedElement"
     (updateProps)="canvasComp.updateSelectedProps($event)">
   </app-property-panel>
-
-
 </div>

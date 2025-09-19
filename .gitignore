@@ -341,3 +341,4 @@ ASALocalRun/
 *.sh
 *.diff
 /mark.client/.vscode
+/README.md
