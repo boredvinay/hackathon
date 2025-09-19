@@ -36,8 +36,10 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.7",
+    "@angular/cdk": "^19.2.19",
     "@angular/cli": "^19.2.7",
     "@angular/compiler-cli": "^19.2.0",
+    "@angular/material": "^19.2.19",
     "@types/highcharts": "^7.0.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.6.0",

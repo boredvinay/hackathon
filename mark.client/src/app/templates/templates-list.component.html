@@ -1,0 +1,41 @@
+<div class="templates-table-container">
+  <div class="templates-header">
+    <h2>Design Templates</h2>
+  </div>
+      <button class="add-design-btn" (click)="newDesign()">
+        + Add Design
+      </button>
+      <div class="global-loading" *ngIf="loading" style="display:inline-block; margin-left:12px;">
+        <!-- simple text spinner; replace with mat-spinner if available -->
+        <span>Loading…</span>
+      </div>
+</div>
+  <div class="templates-table-scroll">
+  <table class="templates-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Last Updated</th>
+        <th>Created At</th>
+        <th>Created By</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let design of designs">
+  <td>{{ design.name }}</td>
+  <td>{{ design.status }}</td>
+  <td>
+    <span *ngIf="design.loadingLatest">Loading...</span>
+    <span *ngIf="!design.loadingLatest">{{ design.lastUpdated ? (design.lastUpdated | date : 'short') : '-' }}</span>
+  </td>
+  <td>{{ design.createdAt ? (design.createdAt | date : 'short') : '-' }}</td>
+  <td>{{ design.createdBy }}</td>
+    <td>
+      <button (click)="open(design)">Edit</button>
+    </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>

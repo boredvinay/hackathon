@@ -1,0 +1,30 @@
+<div class="dlg-header">
+  <div class="dlg-title">Create New Design</div>
+  <button type="button" class="dlg-close" (click)="cancel()" aria-label="Close dialog">X</button>
+</div>
+
+<form mat-dialog-content [formGroup]="form" class="dlg-content">
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" (input)="onNameInput()" placeholder="e.g., Shipping Label" autofocus>
+    <mat-error *ngIf="form.controls.name.invalid && form.controls.name.touched">Enter a valid name (min 2 characters)</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Key</mat-label>
+    <input matInput formControlName="key" (input)="onKeyInput()" placeholder="auto-slug from name, editable">
+    <mat-hint>lowercase letters, digits, hyphens</mat-hint>
+    <mat-error *ngIf="form.controls.key.invalid && form.controls.key.touched">Key must be a slug (a-z, 0-9, -)</mat-error>
+  </mat-form-field>
+
+  <div *ngIf="error" class="error">{{error}}</div>
+</form>
+
+<div mat-dialog-actions class="dlg-actions">
+  <div class="right-actions">
+    <button mat-stroked-button class="btn-cancel" (click)="cancel()" [disabled]="creating">CANCEL</button>
+    <button mat-flat-button class="btn-create" (click)="create()" [disabled]="creating || form.invalid">
+      {{ creating ? 'CREATING…' : 'CREATE' }}
+    </button>
+  </div>
+</div>

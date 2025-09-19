@@ -1,5 +1,8 @@
 <div class="app-designer">
   <div class="left-panel">
+    <div class="designer-logo" (click)="goHome()">
+      <img [src]="logoSrc" (error)="onImgError()" [class.bad]="logoFailed" alt="Logo" />
+    </div>
     <div class="menu-item" (click)="toggleRightPanel('elements')">
       <div class="left-panel-wrapper">
         <span class="material-symbols-outlined">category</span>

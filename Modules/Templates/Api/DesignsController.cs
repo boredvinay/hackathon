@@ -42,7 +42,12 @@ public sealed class DesignsController(IDesignService svc) : ControllerBase
     public async Task<ActionResult<CreateDesignResponse>> CreateDesign([FromBody] CreateDesignRequest req, CancellationToken ct)
     {
         var id = await svc.CreateDesignAsync(req, ct);
-        return CreatedAtAction(nameof(GetDesign), new { id }, new CreateDesignResponse { Id = id });
+        var versionId = await svc.CreateVersionAsync(id, new CreateDesignVersionRequest { CreatedBy = req.CreatedBy }, ct);
+        var version = await svc.GetVersionAsync(versionId, ct);
+        var dsl = await svc.GetDslAsync(versionId, ct);
+
+        var resp = new CreateDesignResponse { Id = id, Version = version, DslJson = dsl };
+        return CreatedAtAction(nameof(GetDesign), new { id }, resp);
     }
 
     /// <summary>

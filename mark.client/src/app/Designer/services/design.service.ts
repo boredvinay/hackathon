@@ -7,6 +7,7 @@ import {
   ListDesignsQuery, PagedResult, PreviewResponse,
   SaveDslRequest, SaveSchemaRequest
 } from '../../models/designer.models';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class DesignService {
@@ -15,6 +16,22 @@ export class DesignService {
   constructor(private readonly http: HttpClient) {}
 
   health() { return this.http.get<{ ok: boolean }>(`${this.base}/api/designs/health`); }
+
+  // Default DSL for a brand-new design
+  buildDefaultDsl(name: string) {
+    return {
+      version: '1.0',
+      design: { name: name || 'NewDesign', units: 'px', dpi: 203, size: { width: 800, height: 600 } },
+      widgets: []
+    };
+  }
+
+  openDesigner(router: Router, designId: string, versionId?: string) {
+    // Option A: query params
+    // router.navigate(['/designer'], { queryParams: { designId, versionId } });
+    // Option B (if your route is /designer/:designId/:versionId)
+    router.navigate(['/designer', designId, versionId ?? 'latest']);
+  }
 
   createDesign(req: CreateDesignRequest) {
     return this.http.post<CreateDesignResponse>(`${this.base}/api/designs`, req);

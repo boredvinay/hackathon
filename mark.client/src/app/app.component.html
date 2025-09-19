@@ -1,1 +1,6 @@
-﻿  <router-outlet></router-outlet>  
+﻿<div class="app-container">
+  <app-left-nav *ngIf="showLeftNav"></app-left-nav>
+  <div class="right-panel" [class.full-width]="!showLeftNav">
+    <router-outlet></router-outlet>
+  </div>
+</div>

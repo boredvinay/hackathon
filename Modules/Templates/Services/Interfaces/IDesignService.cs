@@ -12,7 +12,6 @@ public interface IDesignService
 
     Task<Guid> CreateVersionAsync(Guid designId, CreateDesignVersionRequest req, CancellationToken ct);
     Task<DesignVersionDto> GetVersionAsync(Guid versionId, CancellationToken ct);
-
     Task<string> GetDslAsync(Guid versionId, CancellationToken ct);
     Task SaveDslAsync(Guid versionId, SaveDslRequest req, CancellationToken ct);
 

@@ -1,0 +1,97 @@
+.templates-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.add-design-btn {
+  background: #013220;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  height: 50px;
+  align-self: flex-end;
+}
+.add-design-btn:hover {
+  background: #014d2d;
+}
+
+.templates-table-container {
+  padding: 2rem;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: #f8fafc;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.templates-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 1rem;
+}
+
+.templates-table {
+  width: 95%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.templates-table th, .templates-table td {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  font-size: 1rem;
+  transition: ease-in-out 0.2s;
+  word-break: break-word;
+}
+
+.templates-table th {
+  background: #013220;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+}
+
+.templates-table tr:last-child td {
+  border-bottom: none;
+}
+
+.templates-table tr {
+  transition: ease-in-out 0.2s;
+}
+
+.templates-table tr:hover {
+  background: #e6f4ea;
+}
+
+/* column width hints */
+.templates-table th:nth-child(1), .templates-table td:nth-child(1) { width: 10%; }
+.templates-table th:nth-child(2), .templates-table td:nth-child(2) { width: 8%; }
+.templates-table th:nth-child(3), .templates-table td:nth-child(3) { width: 10%; }
+.templates-table th:nth-child(4), .templates-table td:nth-child(4) { width: 10%; }
+.templates-table th:nth-child(5), .templates-table td:nth-child(5) { width: 10%; }
+.templates-table th:nth-child(6), .templates-table td:nth-child(6) { width: 10%; }
+
+.templates-table td {
+  color: #222;
+}
+
+.templates-table-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #013220;
+  letter-spacing: 1px;
+}

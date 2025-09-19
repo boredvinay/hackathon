@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { LeftNavComponent } from '../shared/left-nav.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
   standalone: true,
-  imports: [HighchartsChartModule],
+  imports: [HighchartsChartModule, LeftNavComponent],
 })
 export class DashboardComponent {
 

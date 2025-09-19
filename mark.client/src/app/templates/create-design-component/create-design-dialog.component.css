@@ -1,0 +1,138 @@
+.dlg-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 6px 12px 8px 12px;
+  min-width: 320px;
+  max-width: 520px;
+}
+.full { width: 100%; }
+.dlg-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 12px 14px 12px;
+}
+.right-actions { display: flex; gap: 8px; align-items: center; }
+.error { color: #b00020; margin-top: 6px; font-size: 0.95rem; }
+
+/* Use global theme tokens from :root (see src/styles.css) */
+:host { font-family: var(--font-stack); }
+
+:host ::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(11,107,58,0.03), rgba(255,255,255,0.02));
+  box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+  animation: dialogOpen 220ms cubic-bezier(.2,.9,.3,1);
+}
+
+@keyframes dialogOpen {
+  from { opacity: 0; transform: translateY(-8px) scale(0.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Header layout */
+.dlg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, rgba(11,107,58,0.04), rgba(255,183,3,0.02));
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.dlg-title { font-size: 1.125rem; font-weight: 700; color: #053826; margin: 0; }
+.dlg-close {
+  color: rgba(5,56,38,0.9);
+  background: transparent;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+}
+.dlg-close:hover { background: rgba(5,56,38,0.04); transform: translateY(-1px); }
+
+/* backdrop blur - apply to overlay pane if available */
+:host ::ng-deep .cdk-overlay-backdrop {
+  backdrop-filter: blur(4px) saturate(1.02);
+  transition: backdrop-filter 220ms ease;
+}
+
+/* Primary (create) button styling */
+.right-actions button.mat-flat-button {
+  background: linear-gradient(90deg, var(--dlg-primary), #0d7b42);
+  color: white;
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  box-shadow: 0 6px 16px rgba(11,107,58,0.14);
+  transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.right-actions button.mat-flat-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(11,107,58,0.22);
+}
+
+/* Secondary (cancel) button styling */
+.right-actions button.mat-stroked-button {
+  border-radius: 8px;
+  padding: 0.35rem 0.8rem;
+  color: var(--dlg-primary);
+  border-color: rgba(11,107,58,0.14);
+  background: rgba(11,107,58,0.02);
+  transition: transform 120ms ease, background 120ms ease;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+/* Specific branded button styles */
+.btn-cancel {
+  background: linear-gradient(180deg,#fff,#f9f9f9);
+  color: #b00020; /* red */
+  border: 1px solid rgba(176,0,32,0.12);
+  text-transform: uppercase;
+}
+.btn-create {
+  background: linear-gradient(90deg, var(--dlg-primary), #0d7b42);
+  color: white;
+  text-transform: uppercase;
+}
+
+/* Rounded form fields and placeholder padding */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 8px;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-thick { border-radius: 8px; }
+.mat-form-field .mat-input-element {
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+/* Ensure placeholder/hint spacing looks padded */
+::ng-deep .mat-form-field-infix { padding: 0 6px; }
+
+
+.right-actions button.mat-stroked-button:hover {
+  transform: translateY(-2px);
+  background: rgba(11,107,58,0.05);
+}
+
+.right-actions button[disabled] {
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+}
+
+@media (max-width: 420px) {
+  .dlg-content { min-width: 260px; padding: 8px; }
+  .dlg-actions { padding: 8px; }
+}

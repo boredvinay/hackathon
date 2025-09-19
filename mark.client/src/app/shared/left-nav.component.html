@@ -1,0 +1,15 @@
+<nav class="left-panel">
+  <div class="logo-container">
+  <img [src]="logoSrc" (error)="onImgError()" [class.bad]="logoFailed" alt="Mark Logo" class="logo" />
+    <div class="app-name">MARK</div>
+  <div class="logo-debug" [attr.aria-hidden]="!logoFailed" style="color:#ff6b6b; font-size:0.8rem; display:block; visibility: hidden;">Logo failed: {{ logoSrc }}</div>
+      <div class="logo-debug-active" [hidden]="!logoFailed" style="color:#ff6b6b; font-size:0.8rem;">Logo failed: {{ logoSrc }}</div>
+  </div>
+  <ul>
+    <li><button class="nav-btn" (click)="goTo('/dashboard')">Dashboard</button></li>
+    <li><button class="nav-btn" (click)="goTo('/templates')">Templates</button></li>
+    <li><button class="nav-btn" (click)="goTo('/jobs')">Jobs & Printing</button></li>
+    <li><button class="nav-btn" (click)="goTo('/admin')">Admin Console</button></li>
+    <li><button class="nav-btn" (click)="goTo('/assets')">Assets</button></li>
+  </ul>
+</nav>

@@ -18,30 +18,36 @@ const stable = (obj:any) => {
   return JSON.stringify(s(obj));
 };
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class DesignFacade {
   private etag$ = new BehaviorSubject<string|null>(null);
 
-  /** expose streams as fields but assign them in ctor (so `bus` is ready) */
+  /** Stream to load DSL if needed elsewhere */
   dsl$!: Observable<any>;
+
+  /** Drives save/autosave effects */
   autosave$!: Observable<any>;
 
   constructor(
     private readonly api: DesignService,
     private readonly bus: EditorBus
   ) {
+    // If you need initial DSL load in this facade, wire it here
     this.dsl$ = this.bus.versionId$.pipe(
       filter((v): v is string => !!v),
       switchMap(vId => this.api.getDsl(vId).pipe(
         map(txt => JSON.parse(txt)),
-        tap(() => this.etag$.next(null))  // wire real ETag if API returns it
+        tap(() => this.etag$.next(null)) // replace with real ETag if you choose to surface it
       )),
       shareReplay(1)
     );
 
+    // Autosave:
+    // - On any DSL change (debounced 500ms)
+    // - On explicit Save click (fires immediately)
     this.autosave$ = merge(
       this.bus.dslChanged$.pipe(debounceTime(500)),
-      this.bus.saveClick$.pipe(switchMap(()=>timer(0)))
+      this.bus.saveClick$.pipe(switchMap(() => timer(0)))
     ).pipe(
       withLatestFrom(this.bus.versionId$),
       filter(([, v]) => !!v),
@@ -54,5 +60,7 @@ export class DesignFacade {
     );
   }
 
-  setContext(designId: string, versionId: string) { this.bus.setContext(designId, versionId); }
+  setContext(designId: string, versionId: string | null) {
+    this.bus.setContext(designId, versionId);
+  }
 }

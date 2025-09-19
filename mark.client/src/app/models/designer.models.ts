@@ -46,8 +46,15 @@ export interface DesignVersionListItem {
   createdBy: string;
 }
 
-export interface CreateDesignRequest { key: string; createdBy?: string; }
-export interface CreateDesignResponse { id: string; }
+export interface CreateDesignRequest {
+  key: string;
+  createdBy?: string;
+}
+export interface CreateDesignResponse {
+  id: string;
+  version?: DesignVersionDto | null;
+  dslJson?: string | null;
+}
 
 export interface CreateDesignVersionRequest {
   semVer: string;
@@ -55,17 +62,47 @@ export interface CreateDesignVersionRequest {
   jsonSchema?: string;
   createdBy?: string;
 }
-export interface CreateDesignVersionResponse { id: string; }
+export interface CreateDesignVersionResponse {
+  id: string;
+}
 
-export interface SaveDslRequest { dslJson: string; }
-export interface SaveSchemaRequest { schemaJson: string; }
+export interface SaveDslRequest {
+  dslJson: string;
+}
+export interface SaveSchemaRequest {
+  schemaJson: string;
+}
 
-export interface ApproveRequest { reviewer: string; signatureHash: string; }
-export interface PreviewResponse { versionId: string; previewPath: string; }
+export interface ApproveRequest {
+  reviewer: string;
+  signatureHash: string;
+}
+export interface PreviewResponse {
+  versionId: string;
+  previewPath: string;
+}
 
 export interface ListDesignsQuery {
   q?: string;
   status?: DesignStatus | '';
   page?: number;
   pageSize?: number;
+}
+
+export interface DesignSummary {
+  createdBy: any;
+  id: string;
+  key: string;
+  name: string;
+  status: string;
+  createdAt: string;
+}
+
+export interface DesignRow {
+  id: string;
+  key: string;
+  name: string;
+  status: string;
+  createdAt: string;
+  createdBy?: string;
 }

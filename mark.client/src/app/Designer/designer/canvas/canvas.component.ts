@@ -163,7 +163,7 @@ export class CanvasComponent implements OnInit, OnDestroy {
   }
 
   // Allow parent page to set backend context (IDs)
-  setContext(designId: string, versionId: string) {
+  setContext(designId: string, versionId: string | null) {
     this.bus.setContext(designId, versionId);
     this.currentTemplateId = designId;
     this.currentVersionId = versionId;

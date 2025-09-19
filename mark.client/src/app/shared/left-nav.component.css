@@ -1,0 +1,59 @@
+
+/* Left Panel */
+.left-panel {
+  width: 220px;
+  background-color: #013220;
+  color: white;
+  padding: 0 10px 0 10px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.5rem;
+}
+
+.logo.bad { border: 2px solid #ff6b6b; }
+.logo-debug-active { color:#ff6b6b; font-size:0.8rem; margin-top:4px; }
+
+.app-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.left-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-panel li {
+  margin-bottom: 1rem;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: ease-in 0.2s;
+}
+
+.nav-btn:hover {
+  background: #014d2d;
+}

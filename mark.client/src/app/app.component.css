@@ -1,5 +1,18 @@
-﻿:host {
-    text-align: center;
+﻿
+.app-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.right-panel {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.right-panel.full-width {
+    margin-left: 0;
+    width: 100%;
 }
 
 th, td {
